@@ -84,3 +84,32 @@ public class Main {
         }
     }
 }
+
+1459
+
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner e=new Scanner(System.in);
+        String cad1=e.nextLine();
+        String cad=cad1+cad1;
+        int p=0,cont=0,temp=0;
+        boolean ruptor=false;
+        for(int i=1;i<cad.length();i++){
+            if(ruptor){
+                if((p+cont)==i)ruptor=false;
+                else if(cad.charAt(p+cont)>cad.charAt(i))ruptor=false;
+                else if(cad.charAt(p+cont)<cad.charAt(i)){ruptor=false;p=temp;i=i-2;}
+                cont++;
+            }
+            else{
+                if(i>=cad1.length())break;
+                if(cad.charAt(i)>cad.charAt(p))p=i;
+                else if(cad.charAt(i)==cad.charAt(p) && i!=(p+1)){
+                    ruptor=true;cont=1;temp=i;
+                }
+            }
+        }
+        System.out.println(p);
+    }
+}
